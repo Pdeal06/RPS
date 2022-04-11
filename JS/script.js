@@ -52,4 +52,15 @@ function playGame(){
             console.log(`${roundResult} You have ${playerScore} and your opponent has ${computerScore}`);
         }
     }
+    if (playerScore > computerScore) {
+        console.log(`You win the game! Final Score: Your ${playerScore} to your opponent's ${computerScore}.`);
+    } else if (playerScore < computerScore) {
+        console.log(`You lose the game! Final Score: Your ${playerScore} to your opponent's ${computerScore}.`);
+    } else {
+        console.log(`It's a tie! Final Score: Your ${playerScore} to your opponent's ${computerScore}.`);
+    }
+
+    playerScore = 0
+    computerScore = 0
+
 }
