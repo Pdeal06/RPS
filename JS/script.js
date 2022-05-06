@@ -64,3 +64,19 @@ function playGame(){
     computerScore = 0
 
 }
+
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorBtn = document.querySelector('#scissors');
+
+rockBtn.addEventListener('click', function(){
+    console.log(playRound('rock', computerPlay()));
+});
+
+paperBtn.addEventListener('click', function(){
+    console.log(playRound('paper', computerPlay()));
+});
+
+scissorBtn.addEventListener('click', function(){
+    console.log(playRound('scissors', computerPlay()));
+});
