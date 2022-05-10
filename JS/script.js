@@ -35,13 +35,10 @@ let playerScore = 0;
 let computerScore = 0;
 
 function playGame(){
-    for (let i = 0; i < 5; i++) {
-        console.log(`Round ${i+1}`);
-        let roundResult = playRound(prompt('Rock, Paper, or Scissors'), computerPlay());
-         
-        if (roundResult.includes('Win')) {
-            ++playerScore;
-            console.log(`${roundResult} You have ${playerScore} and your opponent has ${computerScore}`);
+    let roundResult = results.textContent
+    if (roundResult.includes('Win')) {
+        ++playerScore;
+        console.log(`${roundResult} You have ${playerScore} and your opponent has ${computerScore}`);
         } else if (roundResult.includes('Lose')) {
             ++computerScore
             console.log(`${roundResult} You have ${playerScore} and your opponent has ${computerScore}`);
@@ -51,17 +48,19 @@ function playGame(){
         } else {
             console.log(`${roundResult} You have ${playerScore} and your opponent has ${computerScore}`);
         }
-    }
-    if (playerScore > computerScore) {
+    
+    if (playerScore == 5) {
         console.log(`You win the game! Final Score: Your ${playerScore} to your opponent's ${computerScore}.`);
-    } else if (playerScore < computerScore) {
+        playerScore = 0;
+        computerScore = 0;
+
+    } else if (computerScore == 5)   {
         console.log(`You lose the game! Final Score: Your ${playerScore} to your opponent's ${computerScore}.`);
-    } else {
-        console.log(`It's a tie! Final Score: Your ${playerScore} to your opponent's ${computerScore}.`);
+        playerScore = 0;
+        computerScore = 0;
     }
 
-    playerScore = 0
-    computerScore = 0
+    
 
 }
 
@@ -71,14 +70,17 @@ const scissorBtn = document.querySelector('#scissors');
 
 rockBtn.addEventListener('click', function(){
     results.textContent = (playRound('rock', computerPlay()));
+    playGame();
 });
 
 paperBtn.addEventListener('click', function(){
     results.textContent = (playRound('paper', computerPlay()));
+    playGame();
 });
 
 scissorBtn.addEventListener('click', function(){
     results.textContent = (playRound('scissors', computerPlay()));
+    playGame();
 });
 
 const results = document.querySelector('.results');
