@@ -1,4 +1,4 @@
-function computerPlay() {
+function computerPlay() {  //RNG for comupterpick
     let num = Math.random() * 10;
     
     if (num > 6.6) {
@@ -10,7 +10,7 @@ function computerPlay() {
     }
 }
 
-function playRound(playerSelection, computerSelection = computerPlay()) {
+function playRound(playerSelection, computerSelection = computerPlay()) { //RPS initially written for prompts from user
     let cleanPlayerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()
     
     if (cleanPlayerSelection == computerSelection) {
@@ -34,28 +34,28 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
 let playerScore = 0;
 let computerScore = 0;
 
-function playGame(){
+function playGame(){ //Uses button result for scoring and goes up to 5 for winner
     let roundResult = results.textContent
     if (roundResult.includes('Win')) {
         ++playerScore;
-        console.log(`${roundResult} You have ${playerScore} and your opponent has ${computerScore}`);
+        scoreBoard.textContent = `You have ${playerScore} and your opponent has ${computerScore}`;
         } else if (roundResult.includes('Lose')) {
             ++computerScore
-            console.log(`${roundResult} You have ${playerScore} and your opponent has ${computerScore}`);
+            scoreBoard.textContent = `You have ${playerScore} and your opponent has ${computerScore}`;
         } else if (roundResult.includes('choose')) {
             ++computerScore
-            console.log(`${roundResult} You have ${playerScore} and your opponent has ${computerScore}`);
+            scoreBoard.textContent = `You have ${playerScore} and your opponent has ${computerScore}`;
         } else {
-            console.log(`${roundResult} You have ${playerScore} and your opponent has ${computerScore}`);
+            scoreBoard.textContent = `You have ${playerScore} and your opponent has ${computerScore}`;
         }
     
     if (playerScore == 5) {
-        console.log(`You win the game! Final Score: Your ${playerScore} to your opponent's ${computerScore}.`);
+        scoreBoard.textContent = `You win the game! Final Score: Your ${playerScore} to your opponent's ${computerScore}.`;
         playerScore = 0;
         computerScore = 0;
 
     } else if (computerScore == 5)   {
-        console.log(`You lose the game! Final Score: Your ${playerScore} to your opponent's ${computerScore}.`);
+        scoreBoard.textContent = `You lose the game! Final Score: Your ${playerScore} to your opponent's ${computerScore}.`;
         playerScore = 0;
         computerScore = 0;
     }
@@ -68,10 +68,10 @@ const rockBtn = document.querySelector('#rock');
 const paperBtn = document.querySelector('#paper');
 const scissorBtn = document.querySelector('#scissors');
 
-rockBtn.addEventListener('click', function(){
+rockBtn.addEventListener('click', function(){ 
     results.textContent = (playRound('rock', computerPlay()));
     playGame();
-});
+});//anon function necessary in order for arguments in playRound. playGame func allows presses to dictate rounds going
 
 paperBtn.addEventListener('click', function(){
     results.textContent = (playRound('paper', computerPlay()));
@@ -84,3 +84,4 @@ scissorBtn.addEventListener('click', function(){
 });
 
 const results = document.querySelector('.results');
+const scoreBoard = document.querySelector('.scoreBoard');
